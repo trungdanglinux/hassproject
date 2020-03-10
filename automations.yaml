@@ -1,0 +1,82 @@
+- id: '1573643274171'
+  alias: Check Temperature
+  description: ''
+  trigger:
+  - above: '25'
+    entity_id: sensor.dht_sensor_temperature
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.stove
+    service: switch.turn_on
+- id: '1580230578983'
+  alias: Turn off the light
+  description: Turn off the light
+  trigger:
+  - above: '0'
+    below: '25'
+    entity_id: sensor.dht_sensor_temperature
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.stove
+    service: switch.turn_off
+- id: '1583842060799'
+  alias: Alarm when smoke detected
+  description: Turn off the stove if smoke is detected
+  trigger:
+  - entity_id: binary_sensor.smoke
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.stove
+    service: switch.turn_on
+- id: '1583848326639'
+  alias: Motion Detection
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.motion_detection
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.kitchen_light
+    service: switch.turn_on
+- id: '1583848383745'
+  alias: 'Turn off motion detection '
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.motion_detection
+    for: 00:00:10
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.kitchen_light
+    entity_id: switch.kitchen_light
+    service: switch.turn_off
+  - data: {}
+    entity_id: automation.alarm
+    service: automation.turn_on
+- id: '1583860054893'
+  alias: Alarm when flame detect
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.flame_detection
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.stove
+    service: script.turn_on
+
+

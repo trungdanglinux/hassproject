@@ -1,0 +1,50 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+homeassistant:
+  whitelist_external_dirs:
+   - /tmp
+
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+sensor:
+ - platform: dht
+   sensor: DHT11
+   pin: 4
+   monitored_conditions:
+    - temperature
+    - humidity
+
+binary_sensor:
+ - platform: rpi_gpio
+   ports:
+     17: smoke
+     14: motion detection
+     15: flame detection
+switch:
+  - platform: rpi_gpio
+    ports:
+      27: stove
+      18: kitchen light
+ios:
+camera:
+ - platform: rpi_camera
+   name: kitchen camera
+   image_width: 640
+   image_height: 480
+   image_quality: 7
+   image_rotation: 180
+   timelapse: 1000
+   horizontal_flip: 0
+   vertical_flip: 0  
+

@@ -16,4 +16,4 @@ Installation:
       - Also change the option start_motion_daemons=no to start_motion_daemons=yes in /etc/default/motion
       -$sudo systemctl start motion
       - check if it works by puting IP address of Raspberry and port on browser address <IP address:port> (8081 by default)
- - For home assistant, the system can be monitored and controlled via web user interface with IP address and the port with the systax <IP address:8123> or using DNS <hassio.local:8123>
+ - For home assistant, the system can be monitored and controlled via web user interface with IP address and the port with the systax <IP address:8123> or using DNS <hassio.local:8123>. The system can monified in /config/configuration.yaml via SSH (secure shell) and also automated in automations.yaml.

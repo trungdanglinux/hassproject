@@ -8,7 +8,7 @@ default_config:
 # Text to speech
 homeassistant:
   whitelist_external_dirs:
-   - /tmp
+   - /home/
 
 tts:
   - platform: google_translate
@@ -36,15 +36,11 @@ switch:
     ports:
       27: stove
       18: kitchen light
+      22: buzzer
 ios:
 camera:
- - platform: rpi_camera
+   - platform: mjpeg
+   mjpeg_url: http://IPaddress:8081/mjpeg
    name: kitchen camera
-   image_width: 640
-   image_height: 480
-   image_quality: 7
-   image_rotation: 180
-   timelapse: 1000
-   horizontal_flip: 0
-   vertical_flip: 0  
+
 

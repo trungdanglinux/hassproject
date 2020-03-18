@@ -93,7 +93,7 @@
     service: switch.turn_on
   - data:
       entity_id: camera.kitchen_camera
-      filename: /tmp/yourcamera_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
+      filename: /home/yourcamera_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
     entity_id: camera.kitchen_camera
     service: camera.snapshot
   - data: {}
